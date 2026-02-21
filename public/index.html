@@ -2,27 +2,75 @@
 <html>
 <head>
 <title>MWENA BOT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-body{background:black;color:white;text-align:center;font-family:Arial}
-.box{margin-top:40px;padding:20px;box-shadow:0 0 20px cyan;border-radius:20px}
-input{padding:12px;width:80%;border-radius:10px}
-button{padding:12px;margin-top:10px;background:cyan;border:none}
+body{
+    background:black;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+
+.box{
+    margin-top:40px;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 0 25px cyan;
+}
+
+img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    box-shadow:0 0 15px cyan;
+}
+
+input{
+    padding:12px;
+    width:80%;
+    border-radius:10px;
+    border:1px solid cyan;
+    background:black;
+    color:white;
+}
+
+button{
+    padding:12px 25px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background:cyan;
+    font-weight:bold;
+}
 </style>
 </head>
+
 <body>
 
 <div class="box">
-<h2>MWENA BOT</h2>
+
+<img src="profile.jpg">
+
+<h2>MWENA BOT v1.0</h2>
+<p>Enter number with country code (255... no 0)</p>
+
 <input id="num" placeholder="2557xxxxxxx">
 <br>
 <button onclick="gen()">Generate Code</button>
+
 <h3 id="code"></h3>
+
 </div>
 
 <script>
 async function gen(){
 let number=document.getElementById("num").value
-let res=await fetch("/pair",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({number})})
+let res=await fetch("/pair",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({number})
+})
 let data=await res.json()
 document.getElementById("code").innerText=data.code||data.error
 }
