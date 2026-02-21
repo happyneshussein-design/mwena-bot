@@ -105,4 +105,5 @@ app.post("/pair", async (req, res) => {
     }
 })
 
-app.listen(3000, () => console.log("MWENA BOT Running"))
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => console.log("MWENA BOT Running on port " + PORT))
