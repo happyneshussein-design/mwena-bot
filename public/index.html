@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MWENA BOT</title>
+<style>
+body{background:black;color:white;text-align:center;font-family:Arial}
+.box{margin-top:40px;padding:20px;box-shadow:0 0 20px cyan;border-radius:20px}
+input{padding:12px;width:80%;border-radius:10px}
+button{padding:12px;margin-top:10px;background:cyan;border:none}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>MWENA BOT</h2>
+<input id="num" placeholder="2557xxxxxxx">
+<br>
+<button onclick="gen()">Generate Code</button>
+<h3 id="code"></h3>
+</div>
+
+<script>
+async function gen(){
+let number=document.getElementById("num").value
+let res=await fetch("/pair",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({number})})
+let data=await res.json()
+document.getElementById("code").innerText=data.code||data.error
+}
+</script>
+
+</body>
+</html>
